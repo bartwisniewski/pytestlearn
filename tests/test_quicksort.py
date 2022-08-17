@@ -29,7 +29,7 @@ def test_should_be_in_right_order(gen_random_list):
 
 
 def test_should_raise_no_error_for_empty_list():
-    quicksort([])
+    assert quicksort([])
 
 
 def test_should_do_nothing_for_single_element_list():

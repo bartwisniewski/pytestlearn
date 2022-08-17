@@ -56,3 +56,6 @@ def test_should_return_emptystring_for_other_numbers(get_other_nums):
     for num in get_other_nums:
         assert fizzbuzz(num) == ""
 
+
+def test_should_return_fizzbuzz_for_0():
+    assert fizzbuzz(0) == ""
