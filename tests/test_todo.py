@@ -29,14 +29,6 @@ def test_check_pos_should_raise_exception_if_pos_negative(initialise_todos, pos)
     assert str(e_info.value) == "No such item number!"
 
 
-def test_with_mock(mocker):
-    mock_my_class = mocker.patch('application.MyClass')
-    mock_my_class_get_sth = mocker.patch('application.MyClass.get_something')
-    mock_my_class_get_sth.return_value = 'Hello'
-
-    assert mock_my_class.get_something() == 'Hello'
-
-
 @pytest.mark.parametrize("content", ['ccc', ''])
 def test_check_pos_should_add_content_correctly(mocker, content):
     todo_object = mocker.patch.object(functionality.todo, 'todos', ['aaa', 'bbb'])
