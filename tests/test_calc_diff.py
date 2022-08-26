@@ -41,19 +41,18 @@ def test_should_return_zero_if_end_equals_start():
 
 @pytest.fixture
 def set_datetime_mock(mocker):
-    mock_datetime = mocker.patch('functionality.calc_diff.datetime')
+    iso_end_datetime = '2022-08-23T22:00:30+00:00'
 
-    def mock_now(timezone):
-        return datetime.fromisoformat('2022-08-23T22:00:30+00:00')
+    class MyDateTime(datetime):
+        def now(self, tz=None):
+            return datetime.fromisoformat(iso_end_datetime)
 
-    def mock_fromisoformat(end_time):
-        return datetime.fromisoformat(end_time)
-
-    mocker.patch('functionality.calc_diff.datetime.fromisoformat', mock_fromisoformat)
-    mocker.patch('functionality.calc_diff.datetime.now', mock_now)
+    mocker.patch('functionality.calc_diff.datetime', MyDateTime)
+    return iso_end_datetime
 
 
 def test_should_work_if_end_is_none(set_datetime_mock):
+
     case = {
         'start_time': '2022-08-23T22:00:00+00:00',
         'end_time': None

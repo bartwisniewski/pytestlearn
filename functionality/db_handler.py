@@ -10,7 +10,9 @@ class Config:
 
 
 class DbHandler:
+
     def connect_to_database(self):
+        print(Config.__class__.__name__)
         return f"I am connecting to {Config.DB_URL} as {Config.DB_USERNAME} with pass: {Config.DB_PASSWORD}..."
 
     def show_msg_when_connected(self):

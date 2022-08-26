@@ -51,7 +51,7 @@ def test_check_pos_should_remove_content_correctly(mocker, parameters):
 
 
 @pytest.mark.parametrize("pos", [2, 3, -1])
-def test_check_pos_should_raise_exception_if_removing_wrong_pos(mocker, pos):
+def test_should_check_pos_raise_exception_if_removing_wrong_pos(mocker, pos):
     mocker.patch.object(functionality.todo, 'todos', ['aaa', 'bbb'])
     with pytest.raises(Exception):
         remove_todo(pos)

@@ -13,7 +13,7 @@ def create_db_handler():
     return db_handler
 
 
-def test_connect_to_database(create_db_handler):
+def test_should_connect_to_database(create_db_handler):
     db_url = TEST_CONFIG['DB_URL']
     username = TEST_CONFIG['DB_USERNAME']
     password = TEST_CONFIG['DB_PASSWORD']
@@ -24,7 +24,7 @@ def test_connect_to_database(create_db_handler):
     assert actual == expected
 
 
-def test_show_msg_when_connected(create_db_handler):
+def test_should_show_msg_when_connected(create_db_handler):
     ok_msg = TEST_CONFIG['OK_MSG']
     expected = f"{ok_msg}"
 
@@ -33,7 +33,7 @@ def test_show_msg_when_connected(create_db_handler):
     assert actual == expected
 
 
-def test_show_msg_when_interrupted(create_db_handler):
+def test_should_show_msg_when_interrupted(create_db_handler):
     nok_msg = TEST_CONFIG['NOK_MSG']
     expected = f"{nok_msg}"
 

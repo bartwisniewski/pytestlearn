@@ -6,12 +6,15 @@ def calc_diff(case):
     start_time = case['start_time']
 
     start_time_obj = datetime.fromisoformat(start_time)
+    print("\nin a calc diff")
+    print(f"datetime is: {datetime}")
+    print(f"start time is: {start_time_obj}")
 
     if end_time is None:
         end_time_obj = datetime.now(timezone.utc)
     else:
         end_time_obj = datetime.fromisoformat(end_time)
-
+    print(f"end time is: {end_time_obj}")
     return (end_time_obj - start_time_obj).total_seconds()
 
 
