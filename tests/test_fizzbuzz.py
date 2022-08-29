@@ -1,61 +1,42 @@
-import pytest
 from functionality.fizzbuzz import *
+from pytest_bdd import scenario, given, when, then
 
 
-def get_fizz_nums():
-    ret = []
-    for i in range(3, 100, 3):
-        if i % 5 != 0:
-            ret.append(i)
-    return ret
+@scenario('fizzbuzz.feature', 'Fizz number')
+def test_fizz():
+    pass
 
 
-@pytest.fixture()
-def get_buzz_nums():
-    ret = []
-    for i in range(5, 100, 5):
-        if i % 3 != 0:
-            ret.append(i)
-    return ret
+@scenario('fizzbuzz.feature', 'Buzz number')
+def test_buzz():
+    pass
 
 
-@pytest.fixture()
-def get_fizzbuzz_nums():
-    ret = []
-    for i in range(5, 100, 5):
-        if i % 3 == 0:
-            ret.append(i)
-    return ret
+@scenario('fizzbuzz.feature', 'Fizzbuzz number')
+def test_fizzbuzz():
+    pass
 
 
-@pytest.fixture()
-def get_other_nums():
-    ret = []
-    for i in range(0, 100, 1):
-        if i % 3 != 0 and i % 5 != 0:
-            ret.append(i)
-    return ret
+@given("I have a number which is divider of 3 and not of 5", target_fixture="number")
+def divider_of_3():
+    return 6
 
 
-@pytest.mark.parametrize("num", get_fizz_nums())
-def test_should_return_fizz_for_multiplications_of_3(num):
-    assert fizzbuzz(num) == "fizz"
+@given("I have a number which is divider of 5 and not of 3")
+def divider_of_5():
+    return 10
 
 
-def test_should_return_buzz_for_multiplications_of_5(get_buzz_nums):
-    for num in get_buzz_nums:
-        assert fizzbuzz(num) == "buzz"
+@given("I have a number which is divider of 3 and of 5")
+def divider_of_3_5():
+    return 15
 
 
-def test_should_return_fizzbuzz_for_multiplications_of_3_and_5(get_fizzbuzz_nums):
-    for num in get_fizzbuzz_nums:
-        assert fizzbuzz(num) == "fizzbuzz"
+@when("when I run fizzbuzz game", target_fixture="fizzbuzz_return")
+def fizzbuzz_game(number: int):
+    return fizzbuzz(number)
 
 
-def test_should_return_emptystring_for_other_numbers(get_other_nums):
-    for num in get_other_nums:
-        assert fizzbuzz(num) == ""
-
-
-def test_should_return_fizzbuzz_for_0():
-    assert fizzbuzz(0) == ""
+@then('Then I should see {expexted} printed')
+def test_fizzbuzz_return(expected, fizzbuzz_return):
+    assert fizzbuzz_return == expected
